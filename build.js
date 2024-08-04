@@ -1,5 +1,7 @@
 const fs = require("node:fs");
 const { exec } = require('child_process');
+ 
+//TODO: Get out of callback hell!!!! 🔥👿👹
 fs.readFile("./tsconfig.json", "utf8", (err, data) => {
   if (err) {
     console.error("Error on build process")
