@@ -16,6 +16,9 @@ export class HttpServer {
     this.p_server = net.createServer((socket) => {
       const response = new HttpResponse(socket);
       socket.on("data", (_data) => {
+        console.log('\r\n\r\n\r\n')
+        console.log("RECEIVED DATA::::::\r\n" + _data.toString());
+        console.log("\r\n\r\n");
         const request = new HttpRequest(_data.toString());
         const route = this.p_router.search(request.path, request.method);
         request.params = route.params;
@@ -23,11 +26,11 @@ export class HttpServer {
         if (!route.found) response.status("404").send();
         else if (!route.handle) response.status("405").send();
         else route.handle(request, response);
-        socket.end();
+        socket.destroy();
       });
 
       socket.on("close", () => {
-        console.log("Closing!");
+        console.log("Closing!\r\n\r\n:::::::::\r\n");
         socket.end();
       });
     });

@@ -53,7 +53,7 @@ export class RouteBuilder {
   }
 
   post(handler: RouteHandler) {
-    this.router.addRoute(this.path, "GET", handler);
+    this.router.addRoute(this.path, "POST", handler);
     return this;
   }
 }
